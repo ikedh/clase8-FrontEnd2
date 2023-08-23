@@ -48,7 +48,15 @@ form.addEventListener('submit', e => {
     e.preventDefault()
 
     const data = capturarInfoForm()
+
     console.log(data);
+
+    const errores = validarInformacion(data)
+
+    console.log(errores);
+
+    renderizarErrores(errores)
+
 })
 
 
@@ -73,9 +81,30 @@ el mismo debe estar almacenado en un objeto y enviar un mensaje por alert que lo
 // 4- Si el telefono tiene menos de 10 números, sumar el error: "No es un teléfono válido."
 // 5- Si la lista de hobbies tiene más de 4 items, sumar el error: "Sólo es posible seleccionar 4 hobbies."
 // 5- Si no hay una nacionalidad definida, sumar el error: "Debe seleccionar una nacionalidad."
-function validarInformacion(usuario) {
-    let errores = [];
-    // 👇 desarrollar aqui la funcion
 
-    return errores;
-}
+
+    const validarInformacion = usuario =>{
+
+        let errores = []
+
+        if(usuario.nombre.length < 3){
+            errores.push("Los datos del nombre están mal")
+        }
+
+        if(usuario.password.trim().length < 6){
+            errores.push("Los datos son insuficientes");
+        }
+
+        if(usuario.telefono.length < 10){
+            errores.push("No es un teléfono")
+        }
+        if (usuario.hobbies.length > 4 || usuario.hobbies.length === 0) {
+            errores.push("Solo puede seleccionar 4")
+        }
+        if (usuario.nacionalidad === "")
+        {errores.push("Seleccione una nacionalidad")}
+
+        return errores
+    }
+    
+
